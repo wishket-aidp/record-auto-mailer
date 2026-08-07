@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/fromAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="발신 Gmail 주소"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/toAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="수신 주소"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/watchDir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="감시 폴더 경로"
+            android:inputType="textUri" />
+
+        <EditText
+            android:id="@+id/appPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gmail 앱 비밀번호(16자리)"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/savePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="설정 저장" />
+
+        <Button
+            android:id="@+id/grantAllFiles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="모든 파일 접근 허용" />
+
+        <Button
+            android:id="@+id/grantNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림 허용" />
+
+        <Button
+            android:id="@+id/batteryException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="배터리 최적화 예외 설정" />
+
+        <Button
+            android:id="@+id/scanNow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="지금 스캔" />
+
+        <Button
+            android:id="@+id/testSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="테스트 발송" />
+    </LinearLayout>
+</ScrollView>
