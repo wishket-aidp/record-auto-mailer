@@ -83,12 +83,13 @@ class MainActivity : AppCompatActivity() {
         ) == PackageManager.PERMISSION_GRANTED
         val s = store.load()
         status.text = buildString {
-            appendLine("모든 파일 접근: ${if (allFiles) "허용됨" else "필요"}")
-            appendLine("알림 권한: ${if (notif) "허용됨" else "필요"}")
-            appendLine("앱 비밀번호: ${if (store.isConfigured()) "설정됨" else "미설정"}")
-            appendLine("발신: ${s.smtp.fromAddress}")
-            appendLine("수신: ${s.toAddress}")
-            appendLine("감시 폴더: ${s.watchDir}")
+            appendLine("${if (allFiles) "✓" else "✗"}  모든 파일 접근")
+            appendLine("${if (notif) "✓" else "✗"}  알림 권한")
+            appendLine("${if (store.isConfigured()) "✓" else "✗"}  앱 비밀번호")
+            appendLine()
+            appendLine("발신  ${s.smtp.fromAddress}")
+            appendLine("수신  ${s.toAddress}")
+            append("폴더  ${s.watchDir}")
         }
     }
 
