@@ -69,6 +69,12 @@
             android:text="배터리 최적화 예외 설정" />
 
         <Button
+            android:id="@+id/skipExisting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="기존 파일 건너뛰기 (최초 1회)" />
+
+        <Button
             android:id="@+id/scanNow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

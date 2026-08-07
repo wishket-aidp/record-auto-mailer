@@ -31,4 +31,13 @@ class MimeMessageFactoryTest {
             .any { it.fileName == "call.m4a" }
         assertEquals(true, hasAttachment)
     }
+
+    @Test fun accepts_korean_attachment_filename() {
+        val file = tmp.newFile("통화_테스트.m4a").apply { writeBytes(ByteArray(3)) }
+        val cfg = SmtpConfig("h", 587, "u@x", "pw", "from@x")
+        val msg = MimeMessageFactory.build(session, cfg, "to@y", "제목", "본문", file)
+        val mp = msg.content as MimeMultipart
+        val names = (0 until mp.count).map { mp.getBodyPart(it).fileName }
+        assertEquals(true, names.contains("통화_테스트.m4a"))
+    }
 }

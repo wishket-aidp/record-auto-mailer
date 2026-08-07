@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.melt.callrecmailer.R
+import com.melt.callrecmailer.core.FolderScanner
+import com.melt.callrecmailer.core.RecordingKey
+import com.melt.callrecmailer.data.EncryptedSentKeyRepository
 import com.melt.callrecmailer.data.EncryptedSettingsStore
 import com.melt.callrecmailer.mail.JavaMailMailer
 import com.melt.callrecmailer.work.Scheduler
@@ -65,6 +68,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "스캔 예약됨", Toast.LENGTH_SHORT).show()
         }
         findViewById<Button>(R.id.testSend).setOnClickListener { testSend() }
+        findViewById<Button>(R.id.skipExisting).setOnClickListener { skipExisting() }
     }
 
     override fun onResume() {
@@ -114,5 +118,18 @@ class MainActivity : AppCompatActivity() {
             }
             Toast.makeText(this@MainActivity, msg, Toast.LENGTH_LONG).show()
         }
+    }
+
+    /** 현재 폴더의 모든 녹음을 '전송완료'로 표시해, 이후 새로 생기는 파일만 전송되게 한다. */
+    private fun skipExisting() {
+        if (!PermissionHelper.hasAllFilesAccess()) {
+            Toast.makeText(this, "먼저 '모든 파일 접근'을 허용하세요", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val s = store.load()
+        val files = FolderScanner().scan(File(s.watchDir), s.extensions)
+        EncryptedSentKeyRepository(this).markAllSent(files.map { RecordingKey.of(it) })
+        Toast.makeText(this, "${files.size}개 기존 파일 전송 제외 처리됨", Toast.LENGTH_LONG).show()
+        refreshStatus()
     }
 }

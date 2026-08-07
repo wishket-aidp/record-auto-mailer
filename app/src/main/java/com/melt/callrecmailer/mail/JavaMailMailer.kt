@@ -22,6 +22,8 @@ class JavaMailMailer : Mailer {
             put("mail.smtp.starttls.enable", "true")
             put("mail.smtp.host", config.host)
             put("mail.smtp.port", config.port.toString())
+            put("mail.mime.encodefilename", "true")
+            put("mail.mime.charset", "UTF-8")
         }
         val session = Session.getInstance(props, object : Authenticator() {
             override fun getPasswordAuthentication() =

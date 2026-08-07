@@ -28,6 +28,13 @@ class EncryptedSentKeyRepository(context: Context) : SentKeyRepository {
         prefs.edit().putStringSet(KEY_SET, updated).apply()
     }
 
+    /** 기존 파일 일괄 '전송완료' 시딩(최초 1회, 백로그 건너뛰기용). */
+    fun markAllSent(keys: Collection<String>) {
+        val updated = HashSet(prefs.getStringSet(KEY_SET, emptySet())!!)
+        updated.addAll(keys)
+        prefs.edit().putStringSet(KEY_SET, updated).apply()
+    }
+
     companion object {
         private const val KEY_SET = "sent_keys"
     }
