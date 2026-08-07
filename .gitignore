@@ -15,6 +15,7 @@ local.properties
 # Keystore / 서명 (절대 커밋 금지)
 *.jks
 *.keystore
+keystore.properties
 
 # Build outputs
 *.apk
